@@ -5,7 +5,7 @@ node (label: 'linux-node') {
     
     // Check if node container is already running
     def isRunning = sh(script: "docker ps | grep ${nodeContainerName}", returnStatus:true)
-    if (isRunning) {
+    if (!isRunning) {
         sh "docker stop ${nodeContainerName}"
         sh "docker rm ${nodeContainerName}"
     }
